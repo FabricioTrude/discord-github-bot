@@ -1,0 +1,15 @@
+# ignora tudo
+*
+
+# exceções básicas
+!.gitignore
+!package.json
+!package-lock.json
+!src/
+
+# docs (conteúdo do mundo)
+!docs/
+!docs/**
+
+# workspace (NUNCA versionado)
+workspace/
