@@ -2,7 +2,7 @@ const simpleGit = require("simple-git")
 
 const git = simpleGit("workspace")
 async function commitAndPush(message) {
-    await git.add("./*")
+    await git.add(".")
     const status = await git.status();
     if (status.files.length === 0) return;
 
@@ -13,15 +13,13 @@ async function commitAndPush(message) {
         await git.checkout("komorebi");
     }
     await git.commit(message, undefined, {
-        "--amend": null,
-        "--no-edit": null
+        "--amend": null
     });
     await git.push("origin", "komorebi", {
         "--force": null
     });
 }
 async function pushKomorebi(){
-    const git = simpleGit("workspace")
     await git.push("origin", "komorebi", {"--force": null});
 }
 module.exports = {commitAndPush, pushKomorebi}
