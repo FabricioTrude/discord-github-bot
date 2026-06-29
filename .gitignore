@@ -9,8 +9,5 @@
 # docs (conteúdo do mundo)
 !src
 !src/**
-!docs/
-!docs/**
-
-# workspace (NUNCA versionado)
-workspace/
+!workspace
+!workspace/**
