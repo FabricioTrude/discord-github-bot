@@ -5,9 +5,10 @@
 !.gitignore
 !package.json
 !package-lock.json
-!src/
 
 # docs (conteúdo do mundo)
+!src
+!src/**
 !docs/
 !docs/**
 
