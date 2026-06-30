@@ -2,6 +2,8 @@ const simpleGit = require("simple-git")
 const {existsSync} = require("fs")
 const {rm} = require("fs/promises")
 
+let repo;
+
 function workspaceGit(){return simpleGit("workspace")}
 
 async function prepareWorkspace(){
@@ -19,7 +21,7 @@ async function cloneWorkspace() {
     const git = simpleGit();
     const url = `https://${process.env.GITHUB_TOKEN}@github.com/${process.env.GITHUB_OWNER}/${process.env.GITHUB_REPO}.git`;
     await git.clone(url, "workspace");
-    const repo = simpleGit("workspace");
+    repo = simpleGit("workspace");
     await repo.checkout("komorebi");
 }
 
