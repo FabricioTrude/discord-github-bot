@@ -1,8 +1,8 @@
 const simpleGit = require("simple-git")
 const {existsSync} = require("fs")
 
-const git = workspaceGid()
-function workspaceGid(){return simpleGit("workspace")}
+const git = workspaceGit()
+function workspaceGit(){return simpleGit("workspace")}
 
 async function commitAndPush(message) {
     await git.add(".")
