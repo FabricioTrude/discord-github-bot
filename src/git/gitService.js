@@ -31,8 +31,8 @@ async function prepareWorkspace(){
     } else {
         await updateWorkspace();
     }
-    await git.config("user.name", process.env.GIT_AUTHOR_NAME)
-    await git.config("user.email", process.env.GIT_AUTHOR_EMAIL)
+    await git.addConfig("user.name", process.env.GIT_AUTHOR_NAME)
+    await git.addConfig("user.email", process.env.GIT_AUTHOR_EMAIL)
 }
 async function cloneWorkspace(){
     const git = simpleGit();
