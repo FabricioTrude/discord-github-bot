@@ -38,15 +38,37 @@ async function prepareWorkspace(){
     await git.addConfig("user.name", process.env.GIT_AUTHOR_NAME)
     await git.addConfig("user.email", process.env.GIT_AUTHOR_EMAIL)
 }
-async function cloneWorkspace(){
-    const git = workspaceGit();
+
+// async function cloneWorkspace(){
+//     const git = workspaceGit();
+//     await git.clone(
+//         `https://${process.env.GITHUB_TOKEN}@github.com/${process.env.GITHUB_OWNER}/${process.env.GITHUB_REPOSITORY}.git`,
+//         "workspace"
+//     );
+//     const repo = simpleGit("workspace");
+//     await repo.checkout("komorebi");
+// }
+
+async function cloneWorkspace() {
+    const git = simpleGit();
+
     await git.clone(
-        `https://${process.env.GITHUB_TOKEN}@github.com/${process.env.GITHUB_OWNER}/${process.env.GITHUB_REPOSITORY}.git`,
+        `https://${process.env.GITHUB_TOKEN}@github.com/${process.env.GITHUB_OWNER}/${process.env.GITHUB_REPOS}.git`,
         "workspace"
     );
+
     const repo = simpleGit("workspace");
-    await repo.checkout("komorebi");
+
+    await repo.fetch();
+
+    const branches = await repo.branch(["-a"]);
+
+    console.log("=== BRANCHES ===");
+    console.log(branches);
+
+    // NÃO faça checkout ainda
 }
+
 async function updateWorkspace(){
     const repo = simpleGit("workspace");
     await repo.checkout("komorebi")
