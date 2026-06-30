@@ -3,7 +3,8 @@ const {existsSync} = require("fs")
 
 function workspaceGit(){return simpleGit("workspace")}
 
-async function commitAndPush(message) {
+async function commitAndPush(message)
+{
     await git.add(".")
     const status = await git.status();
     if (status.files.length === 0) return;
@@ -50,6 +51,7 @@ async function prepareWorkspace(){
 // }
 
 async function cloneWorkspace() {
+    console.log("Clonando repositorio...");
     const git = simpleGit();
 
     const url = `https://${process.env.GITHUB_TOKEN}@github.com/${process.env.GITHUB_OWNER}/${process.env.GITHUB_REPO}.git`;
@@ -68,6 +70,7 @@ async function cloneWorkspace() {
 }
 
 async function updateWorkspace(){
+    console.log("Actualizando repositorio...");
     const repo = simpleGit("workspace");
     await repo.checkout("komorebi")
     await repo.pull("origin", "komorebi");
