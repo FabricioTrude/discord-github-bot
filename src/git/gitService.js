@@ -52,21 +52,19 @@ async function prepareWorkspace(){
 async function cloneWorkspace() {
     const git = simpleGit();
 
-    await git.clone(
-        `https://${process.env.GITHUB_TOKEN}@github.com/${process.env.GITHUB_OWNER}/${process.env.GITHUB_REPOS}.git`,
-        "workspace"
-    );
+    const url = `https://${process.env.GITHUB_TOKEN}@github.com/${process.env.GITHUB_OWNER}/${process.env.GITHUB_REPO}.git`;
+
+    console.log("Clonando:", url);
+
+    await git.clone(url, "workspace");
 
     const repo = simpleGit("workspace");
 
-    await repo.fetch();
+    console.log(await repo.raw(["remote", "-v"]));
 
-    const branches = await repo.branch(["-a"]);
+    console.log(await repo.raw(["branch", "-a"]));
 
-    console.log("=== BRANCHES ===");
-    console.log(branches);
-
-    // NÃO faça checkout ainda
+    await repo.checkout("komorebi");
 }
 
 async function updateWorkspace(){
