@@ -1,8 +1,7 @@
 require('dotenv').config();
 const fs = require("fs/promises");
-const pathModule = require("path");
 const {Client, GatewayIntentBits, ChannelType, Partials} = require('discord.js');
-const {commitAndPush} = require("./git/gitService");
+const {commitAndPush, prepareWorkspace} = require("./git/gitService");
 const {generateMarkdown, buildThreadMarkdown} = require("./markdown/generateMarkdown");
 
 const client = new Client({
@@ -15,7 +14,8 @@ const client = new Client({
     partials: [Partials.Message, Partials.Channel, Partials.Reaction]
 });
 
-client.once("clientReady", () => {
+client.once("clientReady", async () => {
+    await prepareWorkspace();
     console.log(`${client.user.tag} is online!`);
 })
 
