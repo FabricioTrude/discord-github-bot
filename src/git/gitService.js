@@ -16,25 +16,15 @@ async function prepareWorkspace(){
 }
 
 async function cloneWorkspace() {
-    console.log("Clonando repositorio...");
     const git = simpleGit();
-
     const url = `https://${process.env.GITHUB_TOKEN}@github.com/${process.env.GITHUB_OWNER}/${process.env.GITHUB_REPO}.git`;
-
-    console.log("Clonando:", url);
-
     await git.clone(url, "workspace");
-
     const repo = simpleGit("workspace");
-
-    console.log(await repo.raw(["remote", "-v"]));
-
-    console.log(await repo.raw(["branch", "-a"]));
-
     await repo.checkout("komorebi");
 }
 
 async function commitAndPush(message) {
+    const git = workspaceGit();
     await git.add(".")
     const status = await git.status();
     if (status.files.length === 0) return;
@@ -46,7 +36,6 @@ async function commitAndPush(message) {
         await repo.fetch()
         const branches = await git.branch(["-a"]);
         console.log(branches.all)
-        // await git.checkout("komorebi");
     }
     await git.commit(message, undefined, {
         "--amend": null
