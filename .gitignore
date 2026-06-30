@@ -9,5 +9,3 @@
 # docs (conteúdo do mundo)
 !src
 !src/**
-!workspace
-!workspace/**

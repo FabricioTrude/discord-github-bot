@@ -1,4 +1,4 @@
-async function generateMarkdown(thread, starterMessage) {
+function generateMarkdown(thread, starterMessage) {
     return `
 ---
    >author: ${starterMessage.author.username}<br>
@@ -15,7 +15,7 @@ async function generateMarkdown(thread, starterMessage) {
 
 async function buildThreadMarkdown(thread) {
     const starter = await thread.fetchStarterMessage();
-    const markdown = await generateMarkdown(thread, starter);
+    const markdown = generateMarkdown(thread, starter);
     const messages = await thread.messages.fetch({limit: 100});
     const sorted = messages.sort((a, b) => a.createdTimestamp - b.createdTimestamp);
     const messageBlock = sorted.map(msg => {
