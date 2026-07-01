@@ -25,4 +25,4 @@ async function buildThreadMarkdown(thread) {
     return markdown + "\n\n" + messageBlock;
 }
 
-module.exports = {generateMarkdown, buildThreadMarkdown}
+module.exports = {buildThreadMarkdown}

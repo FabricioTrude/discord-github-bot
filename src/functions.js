@@ -1,7 +1,6 @@
-import {buildThreadMarkdown, generateMarkdown} from "./markdown/generateMarkdown";
-
 const fs = require("fs/promises");
 const {ChannelType} = require("discord.js");
+const {buildThreadMarkdown} = require("./markdown/generateMarkdown");
 
 let client
 function setClient(c){client = c}
