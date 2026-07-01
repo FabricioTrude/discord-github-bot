@@ -80,12 +80,8 @@ async function saveRegistry(dir, registry) {
     );
 }
 
-export {
-    getCategoryDir,
+module.exports = {
     writeThreadFileFromContent,
-    loadRegistry,
-    saveRegistry,
-    registry,
     syncAllForums,
     setClient
 }

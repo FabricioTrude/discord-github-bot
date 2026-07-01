@@ -51,4 +51,4 @@ async function pushKomorebi(){
     await git.push("origin", "komorebi", {"--force": null});
 }
 
-module.exports = {commitAndPush, pushKomorebi, prepareWorkspace}
+module.exports = {commitAndPush, prepareWorkspace}
